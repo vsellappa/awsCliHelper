@@ -1,0 +1,36 @@
+####
+#### aws ec2 run-instances --cli-input-yaml file://ec2-run-instance.yaml
+####
+#### Pre-Req : 
+#### a) Configure aws cli with credentials and config
+####
+####
+####
+# Checks if all permissions etc are correct, without actually running it
+DryRun: true
+# The ID of the AMI
+ImageId: 'ami-0bffb4208f934a678' 
+# Instance Type
+InstanceType: m4.4xlarge
+# Name of the key pair in the region
+KeyName: workshop
+# The max. number of instances to launch
+MaxCount: 1 
+# The min. number of instances to launch
+MinCount: 1
+# Specifies whether detailed monitoring is enabled for this instance
+Monitoring: 
+  Enabled: false 
+# The ids of the security groups.
+SecurityGroupIds: 
+- 'sg-068f252528917877a'
+# Tags to apply to the resources during launch
+TagSpecifications: 
+- ResourceType: instance
+  Tags: 
+  - Key: 'owner'
+    Value: 'venky@cloudera.com'
+  - Key: 'purpose'
+    Value: 'IBM SKO Fast Start'
+  - Key: 'enddate'
+    Value: '02142020'  

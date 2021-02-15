@@ -22,3 +22,6 @@ for i in "${!INSTANCES[@]}"; do
     echo "Running cmd = ${cmd[@]}"
     ${cmd[@]}
 done
+
+echo "Listing public IPs:"
+aws ec2 describe-instances --filters "Name=tag:owner,Values=$OWNER@cloudera.com" "Name=instance-state-name,Values=running" --query "Reservations[].Instances[].PublicIpAddress" --output text | tr '\t' '\n'
